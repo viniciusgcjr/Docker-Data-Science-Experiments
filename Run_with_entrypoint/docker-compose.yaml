@@ -1,0 +1,6 @@
+version: '3.3'
+services:
+    noaa-satellite-images:
+        image: viniciusjr/noaa-satellite-images
+        env_file:
+          - goes16-lib-test.env
