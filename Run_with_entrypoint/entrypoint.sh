@@ -15,7 +15,8 @@ S3_BUCKET_PATH="${NOAA_ABI_PRODUCT_NAME}/${IMAGE_RETRIEVAL_YEAR}/${IMAGE_RETRIEV
 echo "* Images location: '${S3_BUCKET_NAME}/${S3_BUCKET_PATH}'"
 
 # Entrypoint call
-RETRIEVAL_CMD="aws s3 --no-sign-request ls --recursive ${S3_BUCKET_NAME}/${S3_BUCKET_PATH}"
+RETRIEVAL_CMD="aws s3 --no-sign-request ls --recursive ${S3_BUCKET_NAME}/${S3_BUCKET_PATH}" 
 echo "=> Executing '${RETRIEVAL_CMD}'"
 
-bash -c "$RETRIEVAL_CMD"
+# https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-awk-script/19075707#19075707 
+bash -c "$RETRIEVAL_CMD" | awk -v bucket_name="$S3_BUCKET_NAME" '{print "https://"bucket_name".s3.amazonaws.com/"$4}'
