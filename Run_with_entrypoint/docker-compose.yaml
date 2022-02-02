@@ -1,6 +1,15 @@
 version: '3.3'
 services:
-    noaa-satellite-images:
-        image: viniciusjr/noaa-satellite-images
-        env_file:
-          - goes16-lib-test.env
+  noaa-satellite-images:
+    image: viniciusjr/noaa-satellite-images-api
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+    -  NOAA_SATELLITE_NAME
+    -  NOAA_ABI_PRODUCT_NAME
+    -  IMAGE_RETRIEVAL_YEAR
+    -  IMAGE_RETRIEVAL_JULIAN_DAY
+    -  IMAGE_RETRIEVAL_HOUR  
+    #env_file:
+    #  - goes16-lib-test.env
