@@ -1,3 +1,9 @@
+#Tests to find bug with env-file
+#if [ -n $DEBBUG ]; then
+#echo "INIT ENV"
+#env
+#fi
+
 # Input validation
 
 NOAA_SATELLITE_NAME=${NOAA_SATELLITE_NAME:?"You need provide the satellite name such as goes16"} 
